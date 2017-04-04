@@ -35,7 +35,7 @@ class MailHandler < Chef::Handler
     Chef::Log.debug("Debug: #{PP.pp(node)}")
 
     status = success? ? "Successful" : "Failed"
-    subject = "#{status} Chef run on node #{node.name} (#{Socket.gethostname})"
+    subject = "#{status} Chef run on #{Socket.gethostname}"
 
     Chef::Log.debug("mail handler template path: #{options[:template_path]}")
     if File.exists? options[:template_path]
