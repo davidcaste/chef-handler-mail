@@ -23,6 +23,8 @@ require 'pp'
 class MailHandler < Chef::Handler
   attr_reader :options
   def initialize(opts = {})
+    Chef::Log.debug("#{PP.pp(node)}")
+
     @options = {
       :to_address => "root",
       :from_address => "chef-client@#{node.fqdn}",
