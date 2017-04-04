@@ -18,6 +18,7 @@ require 'chef/handler'
 require 'erubis'
 require 'pony'
 require 'socket'
+require 'pp'
 
 class MailHandler < Chef::Handler
   attr_reader :options
@@ -33,6 +34,8 @@ class MailHandler < Chef::Handler
   def report
     status = success? ? "Successful" : "Failed"
     subject = "#{status} Chef run on node #{node.name} (#{Socket.gethostname})"
+
+    Chef::Log.debug("#{PP.pp(node)}")
 
     Chef::Log.debug("mail handler template path: #{options[:template_path]}")
     if File.exists? options[:template_path]
