@@ -25,7 +25,7 @@ class MailHandler < Chef::Handler
   def initialize(opts = {})
     @options = {
       :to_address => "root",
-      :from_address => "chef-client@#{node.fqdn}",
+      :from_address => options[:from_address] || "chef-client@#{node.fqdn}",
       :template_path => File.join(File.dirname(__FILE__), "mail.erb")
     }
     @options.merge! opts
